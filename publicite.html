@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarRental-Sales-Ads | Publicité</title>
+    <!-- TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.7);
+            transition: background 0.3s ease-in-out;
+        }
+
+        .navbar a {
+            color: #fff;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f0e68c;
+        }
+
+        .hero {
+            height: 50vh;
+            background: url('https://source.unsplash.com/1600x900/?advertising') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .offer-section,
+        .partner-section,
+        .promotion-section {
+            padding: 4rem 0;
+        }
+
+        .offer-item,
+        .partner-item,
+        .promotion-item {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-item:hover,
+        .partner-item:hover,
+        .promotion-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .offer-item h3,
+        .partner-item h3,
+        .promotion-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .offer-item p,
+        .partner-item p,
+        .promotion-item p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer a {
+            color: #f0e68c;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #ff6347;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- En-tête -->
+    <header class="navbar">
+        <div class="container mx-auto flex justify-between items-center px-4 py-2">
+            <a href="#"><img src="logo.png" alt="CarRental-Sales-Ads" width="150"></a>
+            <nav>
+                <a href="index.html">Accueil</a>
+                <a href="service.html">Services</a>
+                <a href="voiture.html">Voitures</a>
+                <a href="publicite.html">Publicité</a>
+                <a href="suivi.html">Suivi</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Héros -->
+    <section class="hero">
+        <div>
+            <h1>Publicité</h1>
+        </div>
+    </section>
+
+    <!-- Section Offres Spéciales -->
+    <section id="offres" class="offer-section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-center text-2xl mb-8">Nos Offres Spéciales</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Offre 1 -->
+                <div class="offer-item">
+                    <h3>Offre Spéciale 1</h3>
+                    <p>Profitez de notre promotion spéciale avec 20% de réduction sur les publicités pour voitures de luxe.</p>
+                </div>
+                <!-- Offre 2 -->
+                <div class="offer-item">
+                    <h3>Offre Spéciale 2</h3>
+                    <p>Bénéficiez d'une visibilité accrue grâce à notre partenariat avec des sites spécialisés dans l'automobile.</p>
+                </div>
+                <!-- Offre 3 -->
+                <div class="offer-item">
+                    <h3>Offre Spéciale 3</h3>
+                    <p>Promotion exclusive pour les nouvelles annonces : obtenez une semaine de publicité gratuite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Partenaires -->
+    <section id="partenaires" class="partner-section bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-center text-2xl mb-8">Nos Partenaires</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Partenaire 1 -->
+                <div class="partner-item">
+                    <h3>Partenaire 1</h3>
+                    <p>Collaborons avec les meilleurs pour offrir une visibilité maximale à votre annonce.</p>
+                </div>
+                <!-- Partenaire 2 -->
+                <div class="partner-item">
+                    <h3>Partenaire 2</h3>
+                    <p>Partenaire spécialisé dans les publicités en ligne pour le secteur automobile.</p>
+                </div>
+                <!-- Partenaire 3 -->
+                <div class="partner-item">
+                    <h3>Partenaire 3</h3>
+                    <p>Notre réseau de partenaires garantit une diffusion large et efficace de vos annonces.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Promotions en Cours -->
+    <section id="promotions" class="promotion-section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-center text-2xl mb-8">Promotions en Cours</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Promotion 1 -->
+                <div class="promotion-item">
+                    <h3>Promotion 1</h3>
+                    <p>Obtenez une réduction de 10% pour toute publicité réservée avant la fin du mois.</p>
+                </div>
+                <!-- Promotion 2 -->
+                <div class="promotion-item">
+                    <h3>Promotion 2</h3>
+                    <p>Nos partenaires offrent des promotions exclusives pour les nouveaux clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CarRental-Sales-Ads. Tous droits réservés.</p>
+        <p>
+            <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a>
+        </p>
+        <div class="mt-4">
+            <a href="#" class="text-sm mx-2">Facebook</a>
+            <a href="#" class="text-sm mx-2">Twitter</a>
+            <a href="#" class="text-sm mx-2">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- GSAP & Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function () {
+            // Navbar Animation
+            gsap.fromTo('header', { opacity: 0 }, { opacity: 1, duration: 1.5 });
+
+            // Offer Section Animation
+            $('.offer-item').each(function (index) {
+                gsap.fromTo($(this), { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.5, delay: index * 0.3 });
+            });
+
+            // Partner Section Animation
+            $('.partner-item').each(function (index) {
+                gsap.fromTo($(this), { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1.5, delay: index * 0.3 });
+            });
+
+            // Promotion Section Animation
+            $('.promotion-item').each(function (index) {
+                gsap.fromTo($(this), { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.5, delay: index * 0.3 });
+            });
+        });
+    </script>
+</body>
+
+</html>
