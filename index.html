@@ -4,37 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarRental-Sales-Ads</title>
+    <title>CarRental-Sales-Ads - Votre solution automobile complète à Pointe-Noire</title>
     <!-- TailwindCSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom CSS -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background-color: #f0f0f0;
+            color: #333;
         }
 
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.7);
-            transition: background 0.3s ease-in-out;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            transition: all 0.5s ease-in-out;
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
         }
 
         .navbar a {
             color: #fff;
             padding: 15px;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ff6b6b;
+            transition: all 0.3s;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         .navbar a:hover {
-            color: #f0e68c;
+            color: #ff6b6b;
+            transform: translateY(-3px);
         }
 
         .hero {
@@ -47,124 +77,391 @@
             text-align: center;
             color: white;
             z-index: 1;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            z-index: -1;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+            font-size: 4rem;
+            margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-weight: 700;
         }
 
         .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
         }
 
         .hero .btn {
-            padding: 0.75rem 2rem;
+            padding: 1rem 2.5rem;
             border: none;
-            background-color: #ff4500;
+            background-color: #ff6b6b;
             color: white;
             cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease-in-out;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
 
         .hero .btn:hover {
-            background-color: #ff6347;
+            background-color: #ff8787;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
         }
 
         .services {
-            padding: 4rem 0;
-            background-color: #f7f7f7;
+            padding: 8rem 0;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: #ffffff;
+            transform: skewY(-3deg);
         }
 
         .services .service-item {
             text-align: center;
             margin-bottom: 2rem;
-            transition: transform 0.3s ease-in-out;
+            transition: all 0.5s ease-in-out;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
         }
 
         .services .service-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .services .service-item img {
+            transition: all 0.5s ease-in-out;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .services .service-item:hover img {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .car-carousel {
-            background-color: #fff;
-            padding: 2rem 0;
+            background-color: #f7f7f7;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .car-carousel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: #f7f7f7;
+            transform: skewY(3deg);
         }
 
         .car-item {
-            padding: 1rem;
-            transition: transform 0.3s ease-in-out;
+            padding: 1.5rem;
+            transition: all 0.5s ease-in-out;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .car-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-item img {
+            border-radius: 10px;
+            width: 100%;
+            height: auto;
         }
 
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: #333;
+            transform: skewY(-3deg);
         }
 
         footer a {
-            color: #f0e68c;
+            color: #ff6b6b;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b6b;
+            transition: all 0.3s;
+        }
+
+        footer a:hover::after {
+            width: 100%;
         }
 
         footer a:hover {
-            color: #ff6347;
+            color: #ff8787;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: #ff8787;
+            transform: translateY(-5px);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Nouvelles animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotate {
+            animation: rotate 10s linear infinite;
+        }
+
+        /* Effets de survol améliorés */
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.1);
+        }
+
+        .hover-glow {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+        }
+
+        /* Style pour les icônes SVG */
+        .car-icon {
+            width: 50px;
+            height: 50px;
+            fill: #ff6b6b;
+            transition: fill 0.3s ease;
+        }
+
+        .car-icon:hover {
+            fill: #ff8787;
+        }
+
+        /* Nouvelles améliorations */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .text-gradient {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .shadow-pop {
+            transition: all 0.3s ease;
+        }
+
+        .shadow-pop:hover {
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-30px);}
+            60% {transform: translateY(-15px);}
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
         }
     </style>
 </head>
 
 <body>
     <!-- En-tête -->
-    <header class="navbar">
-        <div class="container mx-auto flex justify-between items-center px-4 py-2">
-            <a href="#"><img src="DALL·E 2024-08-12 11.40.20 - A modern and sleek logo for 'CarRental-Sales-Ads', featuring a stylized car icon with a dollar sign integrated into the car's design, and a megaphone .webp" alt="CarRental-Sales-Ads" width="80"></a>
+    <header class="navbar glass-effect">
+        <div class="container mx-auto flex justify-between items-center px-4 py-3">
+            <a href="#" class="logo"><img src="DALL·E 2024-08-12 11.40.20 - A modern and sleek logo for 'CarRental-Sales-Ads', featuring a stylized car icon with a dollar sign integrated into the car's design, and a megaphone .webp" alt="CarRental-Sales-Ads" width="100" class="hover-scale"></a>
             <nav>
-                <a href="index.html">Accueil</a>
-                <a href="service.html">Services</a>
-                <a href="voiture.html">Voitures</a>
-                <a href="publicite.html">Publicité</a>
-                <a href="suivi.html">Suivi</a>
-                <a href="contact.html">Contact</a>
+                <a href="#hero" class="slide-in hover-glow"><i class="fas fa-home"></i> Accueil</a>
+                <a href="#services" class="slide-in hover-glow"><i class="fas fa-cogs"></i> Services</a>
+                <a href="#cars" class="slide-in hover-glow"><i class="fas fa-car"></i> Voitures</a>
+                <a href="#ads" class="slide-in hover-glow"><i class="fas fa-ad"></i> Publicité</a>
+                <a href="#tracking" class="slide-in hover-glow"><i class="fas fa-map-marker-alt"></i> Suivi</a>
+                <a href="#contact" class="slide-in hover-glow"><i class="fas fa-envelope"></i> Contact</a>
             </nav>
         </div>
     </header>
 
     <!-- Section Héros -->
-    <section id="hero" class="hero">
-        <div>
-            <h1>Votre plateforme unique pour louer, acheter et promouvoir des voitures à Pointe-Noire.</h1>
-            <p>Simplifiez vos transactions automobiles grâce à notre service centralisé.</p>
-            <button class="btn">Découvrez Nos Offres</button>
+    <section id="hero" class="hero parallax">
+        <div class="container mx-auto px-4">
+            <h1 class="fade-in-up mb-4 text-gradient">Votre solution automobile complète à Pointe-Noire</h1>
+            <p class="fade-in-up mb-8 glass-effect p-4">Location, vente et promotion de véhicules en un seul endroit</p>
+            <button class="btn floating pulse hover-glow shadow-pop">Découvrez Nos Offres Exceptionnelles</button>
         </div>
     </section>
 
     <!-- Section Services -->
     <section id="services" class="services">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="service-item">
-                    <img src="2019_Nissan_Armada_Big.png" alt="Louer une Voiture">
-                    <h3 class="text-2xl mt-4">Louer une Voiture</h3>
-                    <p>Réservez des voitures en toute simplicité.</p>
+            <h2 class="text-center text-4xl font-bold mb-12 fade-in-up text-gradient">Nos Services Premium</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="service-item fade-in-up hover-scale shadow-pop glass-effect">
+                    <img src="bmw-8-convertible-modelfinder-stage2-890x501.png" alt="Location de Voitures" class="mb-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Location de Voitures</h3>
+                    <p class="text-gray-600">Profitez de notre flotte variée pour tous vos besoins de déplacement.</p>
                 </div>
-                <div class="service-item">
-                    <img src="Hyundai_Tucson_Facelift_2024_Front.webp" alt="Acheter une Voiture">
-                    <h3 class="text-2xl mt-4">Acheter une Voiture</h3>
-                    <p>Trouvez le véhicule de vos rêves.</p>
+                <div class="service-item fade-in-up hover-scale shadow-pop glass-effect">
+                    <img src="Hyundai_Tucson_Facelift_2024_Front.webp" alt="Acheter une Voiture" class="mb-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Vente de Véhicules</h3>
+                    <p class="text-gray-600">Trouvez la voiture de vos rêves parmi notre sélection de qualité.</p>
                 </div>
-                <div class="service-item">
-                    <img src="lexus-interiors.webp" alt="Publicité">
-                    <h3 class="text-2xl mt-4">Publicité</h3>
-                    <p>Promouvez vos services automobiles.</p>
+                <div class="service-item fade-in-up hover-scale shadow-pop glass-effect">
+                    <img src="lexus-interiors.webp" alt="Publicité" class="mb-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Services Publicitaires</h3>
+                    <p class="text-gray-600">Boostez votre visibilité avec nos solutions marketing innovantes.</p>
                 </div>
             </div>
         </div>
@@ -173,27 +470,47 @@
     <!-- Section des Voitures en Vedette -->
     <section id="cars" class="car-carousel">
         <div class="container mx-auto px-4">
-            <h2 class="text-center text-3xl mb-8">Voitures en Vedette</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="car-item">
-                    <img src="lamborghini-huracan-sto.jpg" alt="Car 1">
-                    <h3 class="text-xl mt-2">Lamborghini Huracán</h3>
-                    <p>Puissance et élégance réunies.</p>
+            <h2 class="text-center text-4xl font-bold mb-12 fade-in-up">Voitures en Vedette</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="car-item fade-in-up">
+                    <img src="lamborghini-huracan-sto.jpg" alt="Lamborghini Huracán" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Lamborghini Huracán</h3>
+                    <p class="text-gray-600">Puissance et élégance réunies pour une expérience de conduite unique.</p>
                 </div>
-                <div class="car-item">
-                    <img src="OD-BG861_RUMBLE_GR_20150624165451.jpg" alt="Car 2">
-                    <h3 class="text-xl mt-2">Ferrari 488 GTB</h3>
-                    <p>Vitesse et performance à l'état pur.</p>
+                <div class="car-item fade-in-up">
+                    <img src="OD-BG861_RUMBLE_GR_20150624165451.jpg" alt="Ferrari 488 GTB" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Ferrari 488 GTB</h3>
+                    <p class="text-gray-600">La quintessence de la performance et du design italien.</p>
                 </div>
-                <div class="car-item">
-                    <img src="Tesla_Model_S_2016-01@2x.jpg" alt="Car 3">
-                    <h3 class="text-xl mt-2">Tesla Model S</h3>
-                    <p>L'innovation électrique.</p>
+                <div class="car-item fade-in-up">
+                    <img src="Tesla_Model_S_2016-01@2x.jpg" alt="Tesla Model S" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Tesla Model S</h3>
+                    <p class="text-gray-600">L'avenir de l'automobile : électrique, rapide et luxueuse.</p>
                 </div>
-                <div class="car-item">
-                    <img src="land-rover-range-rover-sport-front-view.jpg" alt="Car 4">
-                    <h3 class="text-xl mt-2">Range Rover Evoque</h3>
-                    <p>Confort et raffinement.</p>
+                <div class="car-item fade-in-up">
+                    <img src="land-rover-range-rover-sport-front-view.jpg" alt="Range Rover Evoque" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Range Rover Evoque</h3>
+                    <p class="text-gray-600">L'alliance parfaite entre luxe urbain et capacités tout-terrain.</p>
+                </div>
+                <div class="car-item fade-in-up">
+                    <img src="lexus LS.jfif" alt="Lexus LS 500h" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Lexus LS 500h</h3>
+                    <p class="text-gray-600">Le summum du luxe et de la technologie hybride japonaise.</p>
+                </div>
+                <div class="car-item fade-in-up">
+                    <img src="rav4-5-gl.png" alt="Toyota RAV4" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Toyota RAV4</h3>
+                    <p class="text-gray-600">Le SUV compact polyvalent, parfait pour la ville et l'aventure.</p>
+                </div>
+                <div class="car-item fade-in-up">
+                    <img src="01-2025-toyota-camry-angular-front-jmv.jfif" alt="Toyota Camry" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Toyota Camry</h3>
+                    <p class="text-gray-600">La berline familiale fiable et confortable par excellence.</p>
+                </div>
+                <div class="car-item fade-in-up">
+                    <img src="jetour.webp" alt="Jetour X70 Plus" class="mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Jetour X70 Plus</h3>
+                    <p class="text-gray-600">Un SUV spacieux et moderne offrant un excellent rapport qualité-prix.</p>
                 </div>
             </div>
         </div>
@@ -202,11 +519,11 @@
     <!-- Section Publicité -->
     <section id="ads" class="bg-gray-100 py-8">
         <div class="container mx-auto px-4">
-            <h2 class="text-center text-3xl mb-8">Publicité</h2>
+            <h2 class="text-center text-3xl mb-8 fade-in-up">Publicité</h2>
             <div class="flex justify-center items-center">
-                <div class="text-center">
+                <div class="text-center fade-in-up">
                     <p>Profitez de nos offres exceptionnelles sur les véhicules neufs et d'occasion !</p>
-                    <button class="btn mt-4">En savoir plus</button>
+                    <button class="btn mt-4 pulse">En savoir plus</button>
                 </div>
             </div>
         </div>
@@ -215,7 +532,7 @@
     <!-- Section Suivi des Véhicules -->
     <section id="tracking" class="py-8">
         <div class="container mx-auto px-4">
-            <h2 class="text-center text-3xl mb-8">Suivi des Véhicules</h2>
+            <h2 class="text-center text-3xl mb-8 fade-in-up">Suivi des Véhicules</h2>
             <div id="map" class="h-64 bg-gray-300"></div>
         </div>
     </section>
