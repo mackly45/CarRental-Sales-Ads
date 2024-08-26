@@ -1,0 +1,43 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build the site with Jekyll in Docker
+        run: |
+          docker run \
+          --volume="${{ github.workspace }}:/srv/jekyll" \
+          --volume="${{ github.workspace }}/_site:/srv/jekyll/_site" \
+          --env JEKYLL_ENV=production \
+          --rm \
+          jekyll/builder:latest \
+          bash -c "jekyll build --future --trace"
+
+      - name: Upload the built site
+        uses: actions/upload-artifact@v4
+        with:
+          name: _site
+          path: _site
+
+      - name: Deploy the site (optional)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          # Add your deployment logic here
+          echo "Deploying the site..."
+
